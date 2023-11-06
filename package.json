@@ -1,7 +1,7 @@
 {
-  "name": "api_apt_ghap",
+  "name": "api_nirvana_pbh",
   "version": "1.0.0",
-  "description": "API RESTful Node.js + Express + PostgreSQL (cliente Paulo de Tarso)",
+  "description": "API RESTful Node.js + Express + PostgreSQL (cliente PBH)",
   "main": "server.js",
   "license": "MIT",
   "dependencies": {
@@ -11,7 +11,7 @@
     "pg": "^8.7.3"
   },
   "scripts": {
-    "start": "pm2 start server.js"
+    "start": "node server.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
