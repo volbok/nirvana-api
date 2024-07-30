@@ -41,10 +41,10 @@ app.listen(port, () => {
 const Pool = require("pg").Pool;
 const pool = new Pool({
   user: "postgres",
-  host: "containers-us-west-128.railway.app",
+  host: "roundhouse.proxy.rlwy.net",
   database: "railway",
-  password: "Mm1VT7rskK0oeRn0qtlp",
-  port: 6017,
+  password: "zBudHKTQmqvHBqkMGYihrAySHVRvSoWo",
+  port: 32529,
 });
 
 // ENDPOINTS //
