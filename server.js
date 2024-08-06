@@ -62,6 +62,69 @@ app.post("/checkusuario", (req, res) => {
   });
 });
 
+// inserir usuario.
+app.post("/insert_usuario", (req, res) => {
+  const {
+    nome,
+    contato,
+    tipo,
+    usuario,
+    senha,
+    unidade
+  } = req.body;
+  var sql = "INSERT INTO usuarios (nome, contato, tipo, usuario, senha, unidade) VALUES ($1, $2, $3, $4, $5, $6)"
+  pool.query(sql, [
+    nome,
+    contato,
+    tipo,
+    usuario,
+    senha,
+    unidade
+  ], (error, results) => {
+    if (error) throw new Error(req.body.idpct + 'ERRO: ' + error);
+    res.send(results);
+  });
+});
+
+// atualizar usuario.
+app.post("/update_usuario/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const {
+    nome,
+    contato,
+    tipo,
+    usuario,
+    senha,
+    unidade
+  } = req.body;
+  var sql = "UPDATE usuarios SET nome = $1, contato = $2, tipo = $3, usuario = $4, senha = $5, unidade = $6  WHERE id = $7";
+  pool.query(sql, [
+    nome,
+    contato,
+    tipo,
+    usuario,
+    senha,
+    unidade,
+    id
+  ], (error, results) => {
+    if (error) throw new Error(error);
+    res.send(results);
+  });
+});
+
+// excluir paciente.
+app.get("/delete_usuario/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  console.log(id);
+  var sql = "DELETE FROM usuarios WHERE id = $1";
+  pool.query(sql, [id], (error, results) => {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+
+
 // PACIENTES.
 // listar todos os pacientes internados.
 app.get("/list_pacientes", (req, res) => {
