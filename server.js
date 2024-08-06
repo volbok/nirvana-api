@@ -62,6 +62,15 @@ app.post("/checkusuario", (req, res) => {
   });
 });
 
+// listar usuários.
+app.get("/list_usuarios", (req, res) => {
+  var sql = "SELECT * FROM usuarios";
+  pool.query(sql, (error, results) => {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
 // inserir usuario.
 app.post("/insert_usuario", (req, res) => {
   const {
@@ -112,7 +121,7 @@ app.post("/update_usuario/:id", (req, res) => {
   });
 });
 
-// excluir paciente.
+// excluir usuario.
 app.get("/delete_usuario/:id", (req, res) => {
   const id = parseInt(req.params.id);
   console.log(id);
@@ -122,8 +131,6 @@ app.get("/delete_usuario/:id", (req, res) => {
     res.send(results);
   });
 });
-
-
 
 // PACIENTES.
 // listar todos os pacientes internados.
