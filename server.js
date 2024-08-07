@@ -79,16 +79,24 @@ app.post("/insert_usuario", (req, res) => {
     tipo,
     usuario,
     senha,
-    unidade
+    upa_vn,
+    upa_pampulha,
+    upa_norte,
+    upa_nordeste,
+    upa_barreiro
   } = req.body;
-  var sql = "INSERT INTO usuarios (nome, contato, tipo, usuario, senha, unidade) VALUES ($1, $2, $3, $4, $5, $6)"
+  var sql = "INSERT INTO usuarios (nome, contato, tipo, usuario, senha, upa_vn, upa_pampulha, upa_norte, upa_nordeste, upa_barreiro) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)"
   pool.query(sql, [
     nome,
     contato,
     tipo,
     usuario,
     senha,
-    unidade
+    upa_vn,
+    upa_pampulha,
+    upa_norte,
+    upa_nordeste,
+    upa_barreiro
   ], (error, results) => {
     if (error) throw new Error(req.body.idpct + 'ERRO: ' + error);
     res.send(results);
@@ -104,16 +112,24 @@ app.post("/update_usuario/:id", (req, res) => {
     tipo,
     usuario,
     senha,
-    unidade
+    upa_vn,
+    upa_pampulha,
+    upa_norte,
+    upa_nordeste,
+    upa_barreiro
   } = req.body;
-  var sql = "UPDATE usuarios SET nome = $1, contato = $2, tipo = $3, usuario = $4, senha = $5, unidade = $6  WHERE id = $7";
+  var sql = "UPDATE usuarios SET nome = $1, contato = $2, tipo = $3, usuario = $4, senha = $5, upa_vn = $6, upa_pampulha = $7, upa_norte = $8, upa_nordeste = $9, upa_barreiro = $10 WHERE id = $11";
   pool.query(sql, [
     nome,
     contato,
     tipo,
     usuario,
     senha,
-    unidade,
+    upa_vn,
+    upa_pampulha,
+    upa_norte,
+    upa_nordeste,
+    upa_barreiro,
     id
   ], (error, results) => {
     if (error) throw new Error(error);
