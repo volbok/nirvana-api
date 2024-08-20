@@ -151,7 +151,7 @@ app.get("/delete_usuario/:id", (req, res) => {
 // PACIENTES.
 // listar todos os pacientes internados.
 app.get("/list_pacientes", (req, res) => {
-  var sql = "SELECT * FROM pacientes";
+  var sql = "SELECT * FROM pacientes WHERE TO_TIMESTAMP(passometro_data, 'DD/MM/YYYY - HH24:MI') > NOW() - INTERVAL '30 days";
   pool.query(sql, (error, results) => {
     if (error) throw error;
     res.send(results);
