@@ -210,8 +210,9 @@ app.post("/insert_paciente", (req, res) => {
     passometro_vulnerabilidade,
     passometro_cersam,
     tag,
+    passometro_responsavel,
   } = req.body;
-  var sql = "INSERT INTO pacientes (aih, procedimento, unidade_origem, setor_origem, nome_paciente, nome_mae, dn_paciente, status, unidade_destino, setor_destino, indicador_data_cadastro, indicador_data_confirmacao, indicador_relatorio, indicador_solicitacao_transporte, indicador_saida_origem, indicador_chegada_destino, dados_susfacil, exames_ok, aih_ok, glasgow, pas, pad, fc, fr, sao2, ofertao2, tipo_leito, contato_nome, contato_telefone, leito_destino, passometro_leito, passometro_situacao, passometro_breve_historico, passometro_avaliacao, passometro_recomendacao, passometro_peso, passometro_notificacao_srag, passometro_notificacao_dengue, passometro_checklist_teste_covid, passometro_checklist_teste_dengue, passometro_checklist_evolucao, passometro_checklist_prescricao, passometro_checklist_laboratorio, passometro_checklist_rx, passometro_setor, passometro_data, passometro_vulnerabilidade, passometro_cersam, tag) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49)"
+  var sql = "INSERT INTO pacientes (aih, procedimento, unidade_origem, setor_origem, nome_paciente, nome_mae, dn_paciente, status, unidade_destino, setor_destino, indicador_data_cadastro, indicador_data_confirmacao, indicador_relatorio, indicador_solicitacao_transporte, indicador_saida_origem, indicador_chegada_destino, dados_susfacil, exames_ok, aih_ok, glasgow, pas, pad, fc, fr, sao2, ofertao2, tipo_leito, contato_nome, contato_telefone, leito_destino, passometro_leito, passometro_situacao, passometro_breve_historico, passometro_avaliacao, passometro_recomendacao, passometro_peso, passometro_notificacao_srag, passometro_notificacao_dengue, passometro_checklist_teste_covid, passometro_checklist_teste_dengue, passometro_checklist_evolucao, passometro_checklist_prescricao, passometro_checklist_laboratorio, passometro_checklist_rx, passometro_setor, passometro_data, passometro_vulnerabilidade, passometro_cersam, tag, passometro_responsavel) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49, $50)"
   pool.query(sql, [
     aih,
     procedimento,
@@ -262,6 +263,7 @@ app.post("/insert_paciente", (req, res) => {
     passometro_vulnerabilidade,
     passometro_cersam,
     tag,
+    passometro_responsavel,
   ], (error, results) => {
     if (error) throw new Error(req.body.idpct + 'ERRO: ' + error);
     res.send(results);
@@ -321,8 +323,9 @@ app.post("/update_paciente/:id", (req, res) => {
     passometro_vulnerabilidade,
     passometro_cersam,
     tag,
+    passometro_responsavel,
   } = req.body;
-  var sql = "UPDATE pacientes SET aih = $1, procedimento = $2, unidade_origem = $3, setor_origem = $4, nome_paciente = $5, nome_mae = $6, dn_paciente = $7, status = $8, unidade_destino = $9, setor_destino = $10, indicador_data_cadastro = $11, indicador_data_confirmacao = $12, indicador_relatorio = $13, indicador_solicitacao_transporte = $14, indicador_saida_origem = $15, indicador_chegada_destino = $16, dados_susfacil = $17, exames_ok = $18, aih_ok = $19, glasgow = $20, pas = $21, pad = $22, fc = $23, fr = $24, sao2 = $25, ofertao2 = $26, tipo_leito = $27, contato_nome = $28, contato_telefone = $29, leito_destino = $30, passometro_leito = $31, passometro_situacao = $32, passometro_breve_historico = $33, passometro_avaliacao = $34, passometro_recomendacao = $35, passometro_peso = $36, passometro_notificacao_srag = $37, passometro_notificacao_dengue = $38, passometro_checklist_teste_covid = $39, passometro_checklist_teste_dengue = $40, passometro_checklist_evolucao = $41, passometro_checklist_prescricao = $42, passometro_checklist_laboratorio = $43, passometro_checklist_rx = $44, passometro_setor = $45, passometro_data = $46, passometro_vulnerabilidade = $47, passometro_cersam = $48, tag = $49 WHERE id = $50";
+  var sql = "UPDATE pacientes SET aih = $1, procedimento = $2, unidade_origem = $3, setor_origem = $4, nome_paciente = $5, nome_mae = $6, dn_paciente = $7, status = $8, unidade_destino = $9, setor_destino = $10, indicador_data_cadastro = $11, indicador_data_confirmacao = $12, indicador_relatorio = $13, indicador_solicitacao_transporte = $14, indicador_saida_origem = $15, indicador_chegada_destino = $16, dados_susfacil = $17, exames_ok = $18, aih_ok = $19, glasgow = $20, pas = $21, pad = $22, fc = $23, fr = $24, sao2 = $25, ofertao2 = $26, tipo_leito = $27, contato_nome = $28, contato_telefone = $29, leito_destino = $30, passometro_leito = $31, passometro_situacao = $32, passometro_breve_historico = $33, passometro_avaliacao = $34, passometro_recomendacao = $35, passometro_peso = $36, passometro_notificacao_srag = $37, passometro_notificacao_dengue = $38, passometro_checklist_teste_covid = $39, passometro_checklist_teste_dengue = $40, passometro_checklist_evolucao = $41, passometro_checklist_prescricao = $42, passometro_checklist_laboratorio = $43, passometro_checklist_rx = $44, passometro_setor = $45, passometro_data = $46, passometro_vulnerabilidade = $47, passometro_cersam = $48, tag = $49, passometro_responsavel = $50 WHERE id = $51";
   pool.query(sql, [
     aih,
     procedimento,
@@ -373,6 +376,7 @@ app.post("/update_paciente/:id", (req, res) => {
     passometro_vulnerabilidade,
     passometro_cersam,
     tag,
+    passometro_responsavel,
     id
   ], (error, results) => {
     if (error) throw new Error(error);
