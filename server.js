@@ -149,9 +149,18 @@ app.get("/delete_usuario/:id", (req, res) => {
 });
 
 // PACIENTES.
-// listar todos os pacientes internados.
+// listar todos os pacientes internados no período de 90 dias.
 app.get("/list_pacientes", (req, res) => {
-  var sql = "SELECT * FROM pacientes WHERE TO_TIMESTAMP(passometro_data, 'DD/MM/YYYY - HH24:MI') > NOW() - INTERVAL '30 days'";
+  var sql = "SELECT * FROM pacientes WHERE TO_TIMESTAMP(passometro_data, 'DD/MM/YYYY - HH24:MI') > NOW() - INTERVAL '90 days'";
+  pool.query(sql, (error, results) => {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+// listar todos os pacientes internados no período de 90 dias.
+app.get("/list_all_pacientes", (req, res) => {
+  var sql = "SELECT * FROM pacientes";
   pool.query(sql, (error, results) => {
     if (error) throw error;
     res.send(results);
