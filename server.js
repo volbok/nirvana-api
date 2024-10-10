@@ -604,3 +604,162 @@ app.get("/delete_ambulancia/:id", (req, res) => {
     res.send(results);
   });
 });
+
+// TABELA EMAD
+// listar unidades de saúde.
+app.get("/list_emad", (req, res) => {
+  var sql = "SELECT * FROM emad";
+  pool.query(sql, (error, results) => {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+// inserir unidade de saúde.
+app.post("/insert_emad", (req, res) => {
+  const {
+    aih,
+    cid,
+    unidade_origem,
+    setor_origem,
+    nome_paciente,
+    nome_mae,
+    dn_paciente,
+    status,
+    endereco_pcte,
+    nome_cuidador,
+    contato_cuidador,
+    cs_vinculo,
+    atb,
+    dia_atb,
+    curativo,
+    ostomia,
+    sne,
+    svd,
+    tqt,
+    vm,
+    acesso_venoso,
+    o2,
+    criterio_estabilidade,
+    criterio_demanda_o2,
+    criterio_social,
+    criterio_diagnostico,
+    criterio_exame_especial,
+    justificativa_recusa
+  } = req.body;
+  var sql = "INSERT INTO emad (aih, cid, unidade_origem, setor_origem, nome_paciente, nome_mae, dn_paciente, status, endereco_pcte, nome_cuidador, contato_cuidador, cs_vinculo, atb, dia_atb, curativo, ostomia, sne, svd, tqt, vm, acesso_venoso, o2, criterio_estabilidade, criterio_demanda_o2, criterio_social, criterio_diagnostico, criterio_exame_especial, justificativa_recusa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28)"
+  pool.query(sql, [
+    aih,
+    cid,
+    unidade_origem,
+    setor_origem,
+    nome_paciente,
+    nome_mae,
+    dn_paciente,
+    status,
+    endereco_pcte,
+    nome_cuidador,
+    contato_cuidador,
+    cs_vinculo,
+    atb,
+    dia_atb,
+    curativo,
+    ostomia,
+    sne,
+    svd,
+    tqt,
+    vm,
+    acesso_venoso,
+    o2,
+    criterio_estabilidade,
+    criterio_demanda_o2,
+    criterio_social,
+    criterio_diagnostico,
+    criterio_exame_especial,
+    justificativa_recusa,
+  ], (error, results) => {
+    if (error) throw new Error(req.body.idpct + 'ERRO: ' + error);
+    res.send(results);
+  });
+});
+
+// atualizar unidade.
+app.post("/update_emad/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const {
+    aih,
+    cid,
+    unidade_origem,
+    setor_origem,
+    nome_paciente,
+    nome_mae,
+    dn_paciente,
+    status,
+    endereco_pcte,
+    nome_cuidador,
+    contato_cuidador,
+    cs_vinculo,
+    atb,
+    dia_atb,
+    curativo,
+    ostomia,
+    sne,
+    svd,
+    tqt,
+    vm,
+    acesso_venoso,
+    o2,
+    criterio_estabilidade,
+    criterio_demanda_o2,
+    criterio_social,
+    criterio_diagnostico,
+    criterio_exame_especial,
+    justificativa_recusa,
+  } = req.body;
+  var sql = "UPDATE emad SET aih = $1, cid = $2, unidade_origem = $3, setor_origem = $4, nome_paciente = $5, nome_mae= $6, dn_paciente = $7, status = $8,  endereco_pcte = $9, nome_cuidador = $10, contato_cuidador = $11, cs_vinculo = $12, atb  = $13, dia_atb  = $14, curativo  = $15, ostomia  = $16, sne  = $17, svd = $18, tqt  = $19, vm  = $20, acesso_venoso  = $21, o2  = $22, criterio_estabilidade  = $23, criterio_demanda  = $24, criterio_social  = $25, criterio_diagnostico  = $26, criterio_exame_especial = $27, justificativa_recusa = $28 WHERE id = $29";
+  pool.query(sql, [
+    aih,
+    cid,
+    unidade_origem,
+    setor_origem,
+    nome_paciente,
+    nome_mae,
+    dn_paciente,
+    status,
+    endereco_pcte,
+    nome_cuidador,
+    contato_cuidador,
+    cs_vinculo,
+    atb,
+    dia_atb,
+    curativo,
+    ostomia,
+    sne,
+    svd,
+    tqt,
+    vm,
+    acesso_venoso,
+    o2,
+    criterio_estabilidade,
+    criterio_demanda_o2,
+    criterio_social,
+    criterio_diagnostico,
+    criterio_exame_especial,
+    justificativa_recusa,
+    id
+  ], (error, results) => {
+    if (error) throw new Error(error);
+    res.send(results);
+  });
+});
+
+// excluir unidade.
+app.get("/delete_unidade/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  console.log(id);
+  var sql = "DELETE FROM unidades WHERE id = $1";
+  pool.query(sql, [id], (error, results) => {
+    if (error) throw error;
+    res.send(results);
+  });
+});
